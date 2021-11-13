@@ -1,0 +1,21 @@
+from: markdown
+to: html5
+
+filters:
+- pandoc-asciimath-filter
+- pandoc-crossref
+- pandoc-katex
+
+standalone: true
+
+variables:
+  figureTitle: '図'
+  tableTitle: '表'
+  listingTitle: 'コード'
+  figPrefix: '図'
+  eqnPrefix: '式'
+  tblPrefix: '表'
+  secPrefix: '節'
+  lstPrefix: 'コード'
+  equationNumberTeX: \\tag
+  lang: ja
