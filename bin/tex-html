@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+if ARGV[0] == '--help' || ARGV[0] == '-h' then
+    puts "Usage: #{$0} <input.md >output.html"
+else
+    system("pandoc -d \'#{__dir__}/../pandoc-defaults.yaml\' --template \'#{__dir__}/../pandoc-html-template.txt\' #{ARGV.join(' ')}")
+end
