@@ -76,6 +76,7 @@ a {
 pre {
     counter-reset: lineNumber;
     display: flex;
+    flex-direction: column;
     white-space: pre-wrap;
     word-break: break-all;
     margin: 0 0 1em 0;
@@ -115,7 +116,7 @@ pre.numberSource code
         padding: 0; width: 4em;
 }
 
-div.sourceCode::before {
+div[data-caption]::before, pre[data-caption]::before {
     content: attr(data-caption);
     width: 100%;
     display: block;
@@ -133,6 +134,11 @@ code.file-name {
 
 code.file-name+pre {
     margin-top: 0;
+}
+
+div.listing>p {
+  text-indent: 0;
+  text-align: center;
 }
 
 table {
