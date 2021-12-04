@@ -33,6 +33,8 @@ $endfor$
 <script src="https://unpkg.com/pagedjs@0.2.0/dist/paged.polyfill.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha384-zTROYFVGOfTw7JV7KUu8udsvW2fx4lWOsCEDqhBreBwlHI4ioVRtmIvEThzJHGET" crossorigin="anonymous">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Noto+Serif+JP&family=Source+Code+Pro&display=swap');
+
 body {
     font-family: "Hiragino Mincho ProN", "Noto Serif JP", serif;
     font-size: 0.8rem;
@@ -58,7 +60,7 @@ h1 {
 h2,
 h3,
 h4 {
-    font-family: "Hiragino Sans", "Noto Sans CJK JP", sans-serif;
+    font-family: "Hiragino Sans", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
     font-weight: normal;
     margin-top: 2rem;
     break-after: avoid;
@@ -127,6 +129,10 @@ div[data-caption]::before, pre[data-caption]::before {
     text-align: center;
     margin-block-start: 1rem;
     font-family: monospace;
+}
+
+code {
+  font-family: 'DejaVu Sans Mono', 'Source Code Pro', "Hiragino Sans", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
 }
 
 code.file-name {
