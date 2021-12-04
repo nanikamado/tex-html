@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 if ARGV[0] == '--help' || ARGV[0] == '-h' then
-    puts "Usage: #{$0} <input.md >output.html"
+    puts "Usage: #{$0} input.md -o output.html"
 else
     system("pandoc -d '#{__dir__}/../pandoc-defaults.yaml' --template '#{__dir__}/../tex-html-template.html' -M 'crossrefYaml=#{__dir__}/../crossref-config.yaml' #{ARGV.join(' ')}")
 end
