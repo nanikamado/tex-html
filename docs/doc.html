@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>tex-html の使い方・記法</title>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<link rel="stylesheet" href="https://unpkg.com/normalize.css@8.0.1/normalize.css">
+<script src="https://unpkg.com/pagedjs@0.2.0/dist/paged.polyfill.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha384-zTROYFVGOfTw7JV7KUu8udsvW2fx4lWOsCEDqhBreBwlHI4ioVRtmIvEThzJHGET" crossorigin="anonymous">
+<style>
+body {
+    font-family: "Hiragino Mincho ProN", "Noto Serif JP", serif;
+    font-size: 0.8rem;
+    line-break: strict;
+    overflow-wrap: break-word;
+}
+
+p {
+    text-indent: 1em;
+    line-height: 1.5rem;
+    margin: 0;
+}
+
+h1 {
+    string-set: title content(text);
+    font-size: 1.3rem;
+    text-align: center;
+    font-weight: 300;
+    margin-block-end: 1.1em;
+    margin-block-start: 2.5rem;
+}
+
+h2,
+h3,
+h4 {
+    font-family: "Hiragino Sans", "Noto Sans CJK JP", sans-serif;
+    font-weight: normal;
+    margin-top: 2rem;
+    break-after: avoid;
+}
+
+h2 {
+    font-size: 1.1rem;
+}
+
+h3, h4 {
+  font-size: .9rem;
+  text-indent: 1em;
+}
+
+a {
+    color: #000;
+}
+
+pre {
+    counter-reset: lineNumber;
+    display: flex;
+    flex-direction: column;
+    white-space: pre-wrap;
+    word-break: break-all;
+    margin: 0 0 1em 0;
+}
+
+pre code {
+    margin: auto;
+    background-color: #eeeeee;
+    border-top: solid .5px #000;
+    border-bottom: solid .5px #000;
+    width: 100%;
+    font-size: .6rem;
+    line-height: .9rem;
+    padding: .5rem 0;
+}
+
+pre > code.sourceCode > span > a:first-child::before {
+    text-decoration: none;
+    pointer-events: none;
+}
+
+pre.numberSource {
+    border: none;
+}
+
+pre.numberSource code
+      { counter-reset: source-line 0; padding-left: .5em; }
+    pre.numberSource code > span
+      { counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0; width: 4em;
+}
+
+div[data-caption]::before, pre[data-caption]::before {
+    content: attr(data-caption);
+    width: 100%;
+    display: block;
+    text-align: center;
+    margin-block-start: 1rem;
+    font-family: monospace;
+}
+
+code.file-name {
+    width: 100%;
+    display: block;
+    text-align: center;
+    margin-block-start: 1rem;
+}
+
+code.file-name+pre {
+    margin-top: 0;
+}
+
+div.listing>p {
+  text-indent: 0;
+  text-align: center;
+}
+
+table {
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 0;
+    border-collapse: collapse;
+    margin: 1em auto;
+}
+
+table th, table td {
+    padding: .3em 1em;
+}
+
+thead tr {
+    border-bottom: 1px solid #000;
+}
+
+img {
+  max-width: 100%;
+}
+
+.footnote {
+    float: footnote;
+}
+
+.next-page {
+  break-before: page;
+}
+
+#title-block-header {
+    margin-block-end: 3.5rem;
+}
+
+#title-block-header>div {
+    text-align: center;
+    font-size: 1rem;
+    margin: 1em 0;
+}
+
+.pagedjs_first_page .top-title-running:not(#_):not(#_):not(#_) {
+    border-bottom: none;
+}
+
+.pagedjs_first_page .top-title-running>.title {
+    visibility: hidden;
+}
+
+.pagedjs_footnote_content::before {
+    content: '';
+    display: block;
+    height: 0;
+    width: 40%;
+    border-top: solid 0.1px;
+    margin-block-end: 0.2rem;
+    margin-block-start: 1rem;
+}
+
+[data-split-to] code {
+  border-bottom: none;
+}
+
+[data-split-from] code {
+  border-top: none;
+}
+
+.katex .mord.cjk_fallback {
+    font-family: "Hiragino Mincho ProN", "Noto Serif JP", serif;
+    font-size: .8rem;
+}
+
+ ::footnote-call {
+    content: "*" counter(footnote, loweralpha);
+    font-size: .8em;
+}
+
+.top-title-running:not(#_):not(#_):not(#_) {
+    position: running(titleRunning);
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: .4em;
+    border-bottom: solid .5px #000;
+}
+
+.top-title-running>.page-num::after {
+    content: counter(page);
+}
+
+@page {
+    @top-left {
+        content: element(titleRunning);
+    }
+    size: A4 portrait;
+    @footnote {
+        float: bottom;
+        /* border-top: solid 1px #000; */
+        font-size: .7rem;
+        line-height: 1.2rem;
+    }
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title"><code>tex-html</code> の使い方・記法</h1>
+</header>
+<div class="top-title-running">
+  <div class="title"><code>tex-html</code> の使い方・記法</div>
+  <div class="page-num"></div>
+</div>
+<h2 id="使い方">使い方</h2>
+<pre><code>tex-html input.md -o output.html</code></pre>
+<h2 id="記法">記法</h2>
+<p>基本的な書き方は普通のMarkdownと同じです。普通のMarkdownと違うところを紹介します。</p>
+<h3 id="latex-による数式"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span> による数式</h3>
+<p>Markdown:</p>
+<pre><code>$$
+f&#39;\left(x\right)=\lim_{\Delta x\to0}\frac{f\left(x+\Delta x\right)-f\left(x\right)}{\Delta x}
+$$</code></pre>
+<p>表示:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>f</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mrow><mo fence="true">(</mo><mi>x</mi><mo fence="true">)</mo></mrow><mo>=</mo><munder><mrow><mi>lim</mi><mo>⁡</mo></mrow><mrow><mi mathvariant="normal">Δ</mi><mi>x</mi><mo>→</mo><mn>0</mn></mrow></munder><mfrac><mrow><mi>f</mi><mrow><mo fence="true">(</mo><mi>x</mi><mo>+</mo><mi mathvariant="normal">Δ</mi><mi>x</mi><mo fence="true">)</mo></mrow><mo>−</mo><mi>f</mi><mrow><mo fence="true">(</mo><mi>x</mi><mo fence="true">)</mo></mrow></mrow><mrow><mi mathvariant="normal">Δ</mi><mi>x</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+f&#x27;\left(x\right)=\lim_{\Delta x\to0}\frac{f\left(x+\Delta x\right)-f\left(x\right)}{\Delta x}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0519em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8019em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord mathnormal">x</span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.1713em;vertical-align:-0.7443em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-2.3557em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">Δ</span><span class="mord mathnormal mtight">x</span><span class="mrel mtight">→</span><span class="mord mtight">0</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">lim</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7443em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">Δ</span><span class="mord mathnormal">x</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">Δ</span><span class="mord mathnormal">x</span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord mathnormal">x</span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<h3 id="asciimath-による数式">AsciiMath による数式</h3>
+<p>Markdown:</p>
+<pre><code>$$:a
+f&#39;(x)=lim_{Delta x-&gt;0}(f(x+Delta x)-f(x))/(Delta x)
+$$</code></pre>
+<p>表示</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>f</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mrow><mo fence="true">(</mo><mi>x</mi><mo fence="true">)</mo></mrow><mo>=</mo><munder><mrow><mi>lim</mi><mo>⁡</mo></mrow><mrow><mi mathvariant="normal">Δ</mi><mi>x</mi><mo>→</mo><mn>0</mn></mrow></munder><mfrac><mrow><mrow><mi>f</mi><mrow><mo fence="true">(</mo><mi>x</mi><mo>+</mo><mi mathvariant="normal">Δ</mi><mi>x</mi><mo fence="true">)</mo></mrow></mrow><mo>−</mo><mrow><mi>f</mi><mrow><mo fence="true">(</mo><mi>x</mi><mo fence="true">)</mo></mrow></mrow></mrow><mrow><mi mathvariant="normal">Δ</mi><mi>x</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">{f}&#x27;{\left({x}\right)}=\lim_{{\Delta{x}\to{0}}}\frac{{{f{{\left({x}+\Delta{x}\right)}}}-{f{{\left({x}\right)}}}}}{{\Delta{x}}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0519em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8019em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord"><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathnormal">x</span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.1713em;vertical-align:-0.7443em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-2.3557em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mtight">Δ</span><span class="mord mtight"><span class="mord mathnormal mtight">x</span></span><span class="mrel mtight">→</span><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">lim</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7443em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord">Δ</span><span class="mord"><span class="mord mathnormal">x</span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord"><span class="mord"><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathnormal">x</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">Δ</span><span class="mord"><span class="mord mathnormal">x</span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord"><span class="mord"><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathnormal">x</span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<h3 id="数式を参照する">数式を参照する</h3>
+<p>Markdown</p>
+<pre><code>[@eq:equation1] は微分の定義です。
+
+$$:a
+f&#39;(x)=lim_{Δx-&gt;0}(f(x+Δx)-f(x))/(Δx)
+$${#eq:equation1}</code></pre>
+<p>表示:</p>
+<p>式 1 は微分の定義です。</p>
+<p><span id="eq:equation1"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><msup><mi>f</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mrow><mo fence="true">(</mo><mi>x</mi><mo fence="true">)</mo></mrow><mo>=</mo><munder><mrow><mi>lim</mi><mo>⁡</mo></mrow><mrow><mi mathvariant="normal">Δ</mi><mi>x</mi><mo>→</mo><mn>0</mn></mrow></munder><mfrac><mrow><mrow><mi>f</mi><mrow><mo fence="true">(</mo><mi>x</mi><mo>+</mo><mi mathvariant="normal">Δ</mi><mi>x</mi><mo fence="true">)</mo></mrow></mrow><mo>−</mo><mrow><mi>f</mi><mrow><mo fence="true">(</mo><mi>x</mi><mo fence="true">)</mo></mrow></mrow></mrow><mrow><mi mathvariant="normal">Δ</mi><mi>x</mi></mrow></mfrac></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(1)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">{f}&#x27;{\left({x}\right)}=\lim_{{Δ{x}\to{0}}}\frac{{{f{{\left({x}+Δ{x}\right)}}}-{f{{\left({x}\right)}}}}}{{Δ{x}}}\tag{1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0519em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8019em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord"><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathnormal">x</span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.1713em;vertical-align:-0.7443em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-2.3557em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mtight">Δ</span><span class="mord mtight"><span class="mord mathnormal mtight">x</span></span><span class="mrel mtight">→</span><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">lim</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7443em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord">Δ</span><span class="mord"><span class="mord mathnormal">x</span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord"><span class="mord"><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathnormal">x</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">Δ</span><span class="mord"><span class="mord mathnormal">x</span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord"><span class="mord"><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathnormal">x</span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="tag"><span class="strut" style="height:2.1713em;vertical-align:-0.7443em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">1</span></span><span class="mord">)</span></span></span></span></span></span></span></p>
+<h3 id="コードブロック">コードブロック</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">#!/usr/bin/env ruby</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="cn">ARGV</span><span class="kw">[</span><span class="dv">0</span><span class="kw">]</span> <span class="kw">==</span> <span class="vs">&#39;--help&#39;</span> <span class="kw">||</span> <span class="cn">ARGV</span><span class="kw">[</span><span class="dv">0</span><span class="kw">]</span> <span class="kw">==</span> <span class="vs">&#39;-h&#39;</span> <span class="cf">then</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">puts</span> <span class="st">&quot;Usage: </span><span class="sc">#{</span><span class="va">$0</span><span class="sc">}</span><span class="st"> &lt;input.md &gt;output.html&quot;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">system</span>(<span class="st">&quot;pandoc -d \&#39;</span><span class="sc">#{</span>__dir__<span class="sc">}</span><span class="st">/../pandoc-defaults.yaml\&#39; --template \&#39;</span><span class="sc">#{</span>__dir__<span class="sc">}</span><span class="st">/../tex-html-template.html\&#39; </span><span class="sc">#{</span><span class="cn">ARGV</span><span class="at">.join</span>(<span class="ch">&#39; &#39;</span>)<span class="sc">}</span><span class="st">&quot;</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```ruby</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">#!/usr/bin/env ruby</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="cn">ARGV</span><span class="kw">[</span><span class="dv">0</span><span class="kw">]</span> <span class="kw">==</span> <span class="vs">&#39;--help&#39;</span> <span class="kw">||</span> <span class="cn">ARGV</span><span class="kw">[</span><span class="dv">0</span><span class="kw">]</span> <span class="kw">==</span> <span class="vs">&#39;-h&#39;</span> <span class="cf">then</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">puts</span> <span class="st">&quot;Usage: </span><span class="sc">#{</span><span class="va">$0</span><span class="sc">}</span><span class="st"> &lt;input.md &gt;output.html&quot;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">system</span>(<span class="st">&quot;pandoc -d \&#39;</span><span class="sc">#{</span>__dir__<span class="sc">}</span><span class="st">/../pandoc-defaults.yaml\&#39; --template \&#39;</span><span class="sc">#{</span>__dir__<span class="sc">}</span><span class="st">/../tex-html-template.html\&#39; </span><span class="sc">#{</span><span class="cn">ARGV</span><span class="at">.join</span>(<span class="ch">&#39; &#39;</span>)<span class="sc">}</span><span class="st">&quot;</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<h3 class="next-page" id="行番号やキャプションをつけたコードブロック">行番号やキャプションをつけたコードブロック</h3>
+<div class="sourceCode" id="cb7" data-caption="tex-html"><pre class="sourceCode numberSource ruby numberLines"><code class="sourceCode ruby"><span id="cb7-1"><a href="#cb7-1"></a><span class="cf">#!/usr/bin/env ruby</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="cf">if</span> <span class="cn">ARGV</span><span class="kw">[</span><span class="dv">0</span><span class="kw">]</span> <span class="kw">==</span> <span class="vs">&#39;--help&#39;</span> <span class="kw">||</span> <span class="cn">ARGV</span><span class="kw">[</span><span class="dv">0</span><span class="kw">]</span> <span class="kw">==</span> <span class="vs">&#39;-h&#39;</span> <span class="cf">then</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>    <span class="fu">puts</span> <span class="st">&quot;Usage: </span><span class="sc">#{</span><span class="va">$0</span><span class="sc">}</span><span class="st"> &lt;input.md &gt;output.html&quot;</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="cf">else</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>    <span class="fu">system</span>(<span class="st">&quot;pandoc -d \&#39;</span><span class="sc">#{</span>__dir__<span class="sc">}</span><span class="st">/../pandoc-defaults.yaml\&#39; --template \&#39;</span><span class="sc">#{</span>__dir__<span class="sc">}</span><span class="st">/../tex-html-template.html\&#39; </span><span class="sc">#{</span><span class="cn">ARGV</span><span class="at">.join</span>(<span class="ch">&#39; &#39;</span>)<span class="sc">}</span><span class="st">&quot;</span>)</span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="cf">end</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{.ruby .numberLines caption=&quot;tex-html&quot;}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="in">#!/usr/bin/env ruby</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="in">if ARGV[0] == &#39;--help&#39; || ARGV[0] == &#39;-h&#39; then</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="in">    puts &quot;Usage: #{$0} &lt;input.md &gt;output.html&quot;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="in">else</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="in">    system(&quot;pandoc -d \&#39;#{__dir__}/../pandoc-defaults.yaml\&#39; --template \&#39;#{__dir__}/../tex-html-template.html\&#39; #{ARGV.join(&#39; &#39;)}&quot;)</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<h3 id="注釈">注釈</h3>
+<p>注釈も書けます。<span class="footnote">これは注釈です。</span></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>注釈も書けます。<span class="co">[</span><span class="ot">これは注釈です。</span><span class="co">]</span>{.footnote}</span></code></pre></div>
+<h3 id="表">表</h3>
+<p>表 1は、表です。</p>
+<div id="tbl:table1">
+<table>
+<caption>表 1: AsciiMath と <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span> の比較</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">AsciiMath</th>
+<th style="text-align: center;"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span></th>
+<th style="text-align: center;">表示</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>a/b</code></td>
+<td style="text-align: center;"><code>\frac ab</code></td>
+<td style="text-align: center;"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mi>a</mi><mi>b</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{{a}}{{b}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0404em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6954em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>ab/c</code></td>
+<td style="text-align: center;"><code>a\frac bc</code></td>
+<td style="text-align: center;"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mfrac><mi>b</mi><mi>c</mi></mfrac></mrow><annotation encoding="application/x-tex">{a}\frac{{b}}{{c}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2251em;vertical-align:-0.345em;"></span><span class="mord"><span class="mord mathnormal">a</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>(ab)/c</code></td>
+<td style="text-align: center;"><code>\frac{ab}c</code></td>
+<td style="text-align: center;"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>a</mi><mi>b</mi></mrow><mi>c</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{{{a}{b}}}{{c}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2251em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span><span class="mord mtight"><span class="mord mathnormal mtight">b</span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>log(a/b)</code></td>
+<td style="text-align: center;"><code>\log\left(\frac ab\right)</code></td>
+<td style="text-align: center;"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>log</mi><mo>⁡</mo><mrow><mo fence="true">(</mo><mfrac><mi>a</mi><mi>b</mi></mfrac><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">{\log{{\left(\frac{{a}}{{b}}\right)}}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2em;vertical-align:-0.35em;"></span><span class="mord"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord"><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size1">(</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6954em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size1">)</span></span></span></span></span></span></span></span></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>1pm2</code></td>
+<td style="text-align: center;"><code>1\pm2</code></td>
+<td style="text-align: center;"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>±</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">{1}\pm{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">1</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">±</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord"><span class="mord">2</span></span></span></span></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>cos a</code></td>
+<td style="text-align: center;"><code>\cos a</code></td>
+<td style="text-align: center;"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>cos</mi><mo>⁡</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">{\cos{{a}}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord"><span class="mop">cos</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">a</span></span></span></span></span></span></span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="見出し">見出し</h3>
+<p>見出しは、<code>##</code> から始めてください。<code>h1</code> はタイトルに使われます。</p>
+</body>
+</html>
