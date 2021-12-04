@@ -169,6 +169,10 @@ img {
     float: footnote;
 }
 
+.next-page {
+  break-before: page;
+}
+
 #title-block-header {
     margin-block-end: 3.5rem;
 }
@@ -195,6 +199,14 @@ img {
     border-top: solid 0.1px;
     margin-block-end: 0.2rem;
     margin-block-start: 1rem;
+}
+
+[data-split-to] code {
+  border-bottom: none;
+}
+
+[data-split-from] code {
+  border-top: none;
 }
 
 .katex .mord.cjk_fallback {
