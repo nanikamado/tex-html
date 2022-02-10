@@ -30,7 +30,7 @@ $for(header-includes)$
   $header-includes$
 $endfor$
 <link rel="stylesheet" href="https://unpkg.com/normalize.css@8.0.1/normalize.css">
-<script src="https://unpkg.com/pagedjs@0.2.0/dist/paged.polyfill.js"></script>
+<!-- <script src="https://unpkg.com/pagedjs@0.2.0/dist/paged.polyfill.js"></script> -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha384-zTROYFVGOfTw7JV7KUu8udsvW2fx4lWOsCEDqhBreBwlHI4ioVRtmIvEThzJHGET" crossorigin="anonymous">
 <style>
 /* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Noto+Serif+JP&family=Source+Code+Pro&display=swap'); */
@@ -49,7 +49,6 @@ p {
 }
 
 h1 {
-    string-set: title content(text);
     font-size: 1.3rem;
     text-align: center;
     font-weight: 300;
@@ -171,14 +170,6 @@ img {
   max-width: 50%;
 }
 
-.footnote {
-    float: footnote;
-}
-
-.next-page {
-  break-before: page;
-}
-
 .center>p {
     display: flex;
     justify-content: space-evenly;
@@ -194,24 +185,6 @@ img {
     margin: 1em 0;
 }
 
-.pagedjs_first_page .top-title-running:not(#_):not(#_):not(#_) {
-    border-bottom: none;
-}
-
-.pagedjs_first_page .top-title-running>.title {
-    visibility: hidden;
-}
-
-.pagedjs_footnote_content::before {
-    content: '';
-    display: block;
-    height: 0;
-    width: 40%;
-    border-top: solid 0.1px;
-    margin-block-end: 0.2rem;
-    margin-block-start: 1rem;
-}
-
 [data-split-to] code {
   border-bottom: none;
 }
@@ -223,36 +196,6 @@ img {
 .katex .mord.cjk_fallback {
     font-family: "Hiragino Mincho ProN", "Noto Serif JP", serif;
     font-size: .8rem;
-}
-
- ::footnote-call {
-    content: "*" counter(footnote, loweralpha);
-    font-size: .8em;
-}
-
-.top-title-running:not(#_):not(#_):not(#_) {
-    position: running(titleRunning);
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: .4em;
-    border-bottom: solid .5px #000;
-}
-
-.top-title-running>.page-num::after {
-    content: counter(page);
-}
-
-@page {
-    @top-left {
-        content: element(titleRunning);
-    }
-    size: A4 portrait;
-    @footnote {
-        float: bottom;
-        /* border-top: solid 1px #000; */
-        font-size: .7rem;
-        line-height: 1.2rem;
-    }
 }
 </style>
 </head>
